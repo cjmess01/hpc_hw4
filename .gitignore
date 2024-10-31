@@ -1,1 +1,3 @@
 scratch/*.txt
+mp_trap.c
+mpi_hello.c
