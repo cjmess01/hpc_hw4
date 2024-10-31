@@ -58,25 +58,7 @@ void printarray(short int **a, int mrows, int ncols)
   }
 }
 
-void wholeprintarray(short int **a, int mrows, int ncols)
-{
-  int i, j;
 
-  for (i = 0; i < mrows; i++)
-  {
-    for (j = 0; j < ncols; j++)
-      if (a[i][j] == 1)
-      {
-        printf("X ");
-      }
-      else
-      {
-        printf("O ");
-      }
-
-    printf("\n");
-  }
-}
 
 
 int conway(short int **map1, short int **map2, int nCols, int nRows, int comm_sz, int local_start, int local_end, int my_rank, int partition){
@@ -114,12 +96,12 @@ int conway(short int **map1, short int **map2, int nCols, int nRows, int comm_sz
 
   }
 
-  wholeprintarray(map1, nRows, nRows);
+
 
 
   // Declares sentinel change value
   int changes = 0;
-
+  MPI_Barrier(MPI_COMM_WORLD);
   // Iterates over all values in map
   // Notice the for loop has i_start and i_end as the iterator, this ensures the threads all modify a different part of the map
   for (int i = local_start; i < local_end; i++)
