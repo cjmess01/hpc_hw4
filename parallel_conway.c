@@ -58,6 +58,25 @@ void printarray(short int **a, int mrows, int ncols)
   }
 }
 
+void wholeprintarray(short int **a, int mrows, int ncols)
+{
+  int i, j;
+
+  for (i = 0; i < mrows; i++)
+  {
+    for (j = 0; j < ncols; j++)
+      if (a[i][j] == 1)
+      {
+        printf("X ");
+      }
+      else
+      {
+        printf("O ");
+      }
+
+    printf("\n");
+  }
+}
 
 
 int conway(short int **map1, short int **map2, int nCols, int nRows, int comm_sz, int local_start, int local_end, int my_rank, int partition){
@@ -76,10 +95,12 @@ int conway(short int **map1, short int **map2, int nCols, int nRows, int comm_sz
     } else{
       // If the first/last one, they should only send/recv, respectively
       if(my_rank == comm_sz-1)
+        
         MPI_Recv(&map1[((my_rank-1)*partition / nCols + 1)][0], partition, MPI_SHORT, comm_sz-2, 0, MPI_COMM_WORLD, NULL);
       else // Process 0
         MPI_Send(&(map1[local_start][0]), partition, MPI_SHORT, (my_rank+1), 0, MPI_COMM_WORLD);  
     }
+
 
     // Send my map's value up the chain (IE, Thread 2 sends down to 1)
     if(my_rank != comm_sz -1 && my_rank != 0){
@@ -92,6 +113,8 @@ int conway(short int **map1, short int **map2, int nCols, int nRows, int comm_sz
     }
 
   }
+
+  wholeprintarray(map1, nRows, nRows);
 
 
   // Declares sentinel change value
@@ -173,10 +196,11 @@ int main(int argc, char **argv){
     map1[i] = &block1[i * nCols];
     map2[i] = &block2[i * nCols];
   }
+  srand48(12345);
 
   if(my_rank == 0){
     // Seeding
-    srand48(12345);
+
     // srand48(time(NULL));
 
     // Initial values
@@ -286,6 +310,7 @@ int main(int argc, char **argv){
 
 
   if(my_rank == 0){
+   
     // Writes results to the file
     FILE *file = fopen(output_directory, "w");
   
@@ -296,10 +321,11 @@ int main(int argc, char **argv){
     }
     for (int i = 1; i < nRows - 1; i++)
     {
+      printf("%d\n", i);
       for (int j = 1; j < nCols - 1; j++)
       {
       
-        
+          
           fprintf(file, "%d ", map1[i][j]);
         
         
