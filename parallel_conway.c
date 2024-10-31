@@ -96,32 +96,7 @@ int conway(short int **map1, short int **map2, int nCols, int nRows, int comm_sz
 
   }
 
-  // Writes results to the file
-  // char* title;
-  // sprintf(title, ".\\%dgen1", my_rank);
-  // FILE *file = fopen(title, "w");
-  
-  //   if (file == NULL)
-  //   {
-  //     perror("Error opening file");
-  //     return 1;
-  //   }
-  //   for (int i = 0; i < nRows - 0; i++)
-  //   {
-  //     printf("%d\n", i);
-  //     for (int j = 0; j < nCols - 0; j++)
-  //     {
-      
-          
-  //         fprintf(file, "%d ", map1[i][j]);
-        
-        
-        
-  //     }
-  //     fprintf(file, "\n"); // New line after each row
-  //   }
-  //   fclose(file);
-
+ 
 
 
 
@@ -272,9 +247,9 @@ int main(int argc, char **argv){
 
     // Ensure everyone finishes their generation before moving on
     MPI_Barrier(MPI_COMM_WORLD);
-    if(my_rank ==0){
-      printf("%d\n", i);
-    }
+    // if(my_rank ==0){
+    //   printf("%d\n", i);
+    // }
     
     int total_changes = 0;
     MPI_Allreduce(&changes, &total_changes, 1, MPI_INT, MPI_SUM, MPI_COMM_WORLD);
@@ -337,7 +312,7 @@ int main(int argc, char **argv){
     }
     for (int i = 1; i < nRows - 1; i++)
     {
-      printf("%d\n", i);
+    
       for (int j = 1; j < nCols - 1; j++)
       {
       
