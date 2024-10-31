@@ -62,7 +62,7 @@ void printarray(short int **a, int mrows, int ncols)
 
 
 int conway(short int **map1, short int **map2, int nCols, int nRows, int comm_sz, int local_start, int local_end, int my_rank, int partition){
-
+  MPI_Barrier(MPI_COMM_WORLD);
   // Later used for determining the range iterated on
   int upper_val = -1;
   int lower_val = -1; 
@@ -95,6 +95,32 @@ int conway(short int **map1, short int **map2, int nCols, int nRows, int comm_sz
     }
 
   }
+
+  // Writes results to the file
+  // char* title;
+  // sprintf(title, ".\\%dgen1", my_rank);
+  // FILE *file = fopen(title, "w");
+  
+  //   if (file == NULL)
+  //   {
+  //     perror("Error opening file");
+  //     return 1;
+  //   }
+  //   for (int i = 0; i < nRows - 0; i++)
+  //   {
+  //     printf("%d\n", i);
+  //     for (int j = 0; j < nCols - 0; j++)
+  //     {
+      
+          
+  //         fprintf(file, "%d ", map1[i][j]);
+        
+        
+        
+  //     }
+  //     fprintf(file, "\n"); // New line after each row
+  //   }
+  //   fclose(file);
 
 
 
@@ -191,13 +217,21 @@ int main(int argc, char **argv){
         if (i == 0 || i == nCols - 1 || j == 0 || j == nCols - 1){
           map1[i][j] = 0;
           map2[i][j] = 0;
-        } else {
+        } else { 
           map1[i][j] = drand48() > 0.5 ? 1 : 0;          
         }
       }
     }
     // printarray(map1, nRows, nCols);
+  } else if(my_rank != 0){
+    for(int i = 0; i < nRows; i++){
+      for(int j = 0; j < nCols; j++){
+        map1[i][j] = 0;
+        map2[i][j] = 0;
+      }
+    }
   }
+  MPI_Barrier(MPI_COMM_WORLD);
 
   // Sets the partition size
   int partition_size = ((nRows-2)*nRows)/comm_sz; 
