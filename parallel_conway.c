@@ -162,6 +162,7 @@ int main(int argc, char **argv){
   short int *block1, *block2;
   short int **map1, **map2;
   int terminated_gen = 0;
+  int special_partition_size;
 
   // Initialize MPI 
   MPI_Init(NULL, NULL);
@@ -182,10 +183,6 @@ int main(int argc, char **argv){
   srand48(12345);
 
   if(my_rank == 0){
-    // Seeding
-
-    // srand48(time(NULL));
-
     // Initial values
     for (int i = 0; i < nRows; i++){
       for (int j = 0; j < nCols; j++){
@@ -214,18 +211,55 @@ int main(int argc, char **argv){
   int local_start    = my_rank*partition_size / nCols + 1;
   // Determines ending row based on locat start 
   int local_end      = local_start + partition_size / nCols;
+  
+  // Special case for 16 threads
+  if(comm_sz == 16){
+    partition_size = 312 * 5002;  
+    special_partition_size = 320 * 5002;
+    
+    local_start = 312 * my_rank + 1;
+    local_end = local_start + 312;
+  }
+
+
   if(my_rank == 0){
     local_start = 1;
   } else if(my_rank == comm_sz-1){
     local_end = nRows-1;
   }
+
+  
   
   printf("Range: [%d - %d)\n", local_start, local_end); 
   
-  // Scatters starting map to different threads, has them receive in map 2 because of a quirk in mpi_scatter not allowing you to send and receive from the same  buffer
-  MPI_Scatter(&(map1[1][0]), partition_size, MPI_SHORT, &(map2[local_start][0]), partition_size, MPI_SHORT, 0, MPI_COMM_WORLD );
-  // Makes sure every thread receives the starting map
-  MPI_Barrier(MPI_COMM_WORLD);
+  if(comm_sz == 16){
+        if(my_rank == 0){
+          for(int i = 1; i < comm_sz; i++){
+            MPI_Status status;
+            if( i != comm_sz -1){
+              MPI_Send(&(map1[312 * i + 1][0]), partition_size, MPI_SHORT, i, 0, MPI_COMM_WORLD);
+            } else {
+              MPI_Send(&(map1[312 * i + 1][0]), special_partition_size, MPI_SHORT, i, 0, MPI_COMM_WORLD);
+            }
+            printf("Received from %d\n", status.MPI_SOURCE);
+          }
+        } else if(comm_sz != 0) {
+          if(my_rank != comm_sz -1){
+            MPI_Recv(&(map2[local_start][0]), partition_size, MPI_SHORT, 0, 0, MPI_COMM_WORLD, NULL);
+          } else {
+            MPI_Recv(&(map2[local_start][0]), special_partition_size, MPI_SHORT, 0, 0, MPI_COMM_WORLD, NULL);
+
+          }
+          printf("Thread %d: Sending partition starting with row %d\n", my_rank, local_start);
+          MPI_Send(&(map1[local_start][0]), partition_size, MPI_SHORT, 0, 0, MPI_COMM_WORLD);
+        }
+  } else {
+    // Scatters starting map to different threads, has them receive in map 2 because of a quirk in mpi_scatter not allowing you to send and receive from the same  buffer
+    MPI_Scatter(&(map1[1][0]), partition_size, MPI_SHORT, &(map2[local_start][0]), partition_size, MPI_SHORT, 0, MPI_COMM_WORLD );
+    // Makes sure every thread receives the starting map
+    MPI_Barrier(MPI_COMM_WORLD);
+  }
+
   // Sets map1 to map2 value 
   for(int i = local_start; i < local_end; i++){
     for(int j = 0; j <nCols; j++){
@@ -274,14 +308,36 @@ int main(int argc, char **argv){
     for(int i = 1; i < comm_sz; i++){
  
       MPI_Status status;
-      MPI_Recv(&(map1[i*partition_size / nCols + 1][0]), partition_size, MPI_SHORT, i, 0, MPI_COMM_WORLD, &status);
+      if(comm_sz == 16){
+        if(i == comm_sz -1){
+          MPI_Recv(&(map1[i*312 + 1][0]), special_partition_size, MPI_SHORT, i, 0, MPI_COMM_WORLD, &status);
+
+        } else {
+          MPI_Recv(&(map1[i*312 + 1][0]), partition_size, MPI_SHORT, i, 0, MPI_COMM_WORLD, &status);
+
+        }
+
+      } else {
+        MPI_Recv(&(map1[i*partition_size / nCols + 1][0]), partition_size, MPI_SHORT, i, 0, MPI_COMM_WORLD, &status);
+      }
       printf("Received from %d\n", status.MPI_SOURCE);
       
       //printf("Receiving - %d from %d\n", i*partition_size / nCols + 1, i);
     }
   }else if(comm_sz > 1 && my_rank != 0) {
+    
     printf("Thread %d: Sending partition starting with row %d\n", my_rank, local_start);
-    MPI_Send(&(map1[local_start][0]), partition_size, MPI_SHORT, 0, 0, MPI_COMM_WORLD);
+    if(comm_sz == 16){
+      if(my_rank != comm_sz - 1){
+        MPI_Send(&(map1[local_start][0]), partition_size, MPI_SHORT, 0, 0, MPI_COMM_WORLD);
+
+      } else if (my_rank == 15){
+        MPI_Send(&(map1[local_start][0]), special_partition_size, MPI_SHORT, 0, 0, MPI_COMM_WORLD);
+      }
+    } else {
+      MPI_Send(&(map1[local_start][0]), partition_size, MPI_SHORT, 0, 0, MPI_COMM_WORLD);
+
+    }
   }
 
 
