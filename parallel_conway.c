@@ -233,26 +233,25 @@ int main(int argc, char **argv){
   printf("Range: [%d - %d)\n", local_start, local_end); 
   
   if(comm_sz == 16){
-        if(my_rank == 0){
-          for(int i = 1; i < comm_sz; i++){
-            MPI_Status status;
-            if( i != comm_sz -1){
-              MPI_Send(&(map1[312 * i + 1][0]), partition_size, MPI_SHORT, i, 0, MPI_COMM_WORLD);
-            } else {
-              MPI_Send(&(map1[312 * i + 1][0]), special_partition_size, MPI_SHORT, i, 0, MPI_COMM_WORLD);
-            }
-            printf("Received from %d\n", status.MPI_SOURCE);
-          }
-        } else if(comm_sz != 0) {
-          if(my_rank != comm_sz -1){
-            MPI_Recv(&(map2[local_start][0]), partition_size, MPI_SHORT, 0, 0, MPI_COMM_WORLD, NULL);
+    if(my_rank == 0){
+      for(int i = 1; i < comm_sz; i++){
+        MPI_Status status;
+          if( i != comm_sz -1){
+            MPI_Send(&(map1[312 * i + 1][0]), partition_size, MPI_SHORT, i, 0, MPI_COMM_WORLD);
           } else {
-            MPI_Recv(&(map2[local_start][0]), special_partition_size, MPI_SHORT, 0, 0, MPI_COMM_WORLD, NULL);
-
+            MPI_Send(&(map1[312 * i + 1][0]), special_partition_size, MPI_SHORT, i, 0, MPI_COMM_WORLD);
           }
-          printf("Thread %d: Sending partition starting with row %d\n", my_rank, local_start);
-          MPI_Send(&(map1[local_start][0]), partition_size, MPI_SHORT, 0, 0, MPI_COMM_WORLD);
+          printf("Sending from %d\n", status.MPI_SOURCE);
         }
+      } else if(comm_sz != 0) {
+        if(my_rank != comm_sz -1){
+          MPI_Recv(&(map2[local_start][0]), partition_size, MPI_SHORT, 0, 0, MPI_COMM_WORLD, NULL);
+        } else {
+          MPI_Recv(&(map2[local_start][0]), special_partition_size, MPI_SHORT, 0, 0, MPI_COMM_WORLD, NULL);
+        }
+        printf("Thread %d: Sending partition starting with row %d\n", my_rank, local_start);
+      }
+    MPI_Barrier(MPI_COMM_WORLD);
   } else {
     // Scatters starting map to different threads, has them receive in map 2 because of a quirk in mpi_scatter not allowing you to send and receive from the same  buffer
     MPI_Scatter(&(map1[1][0]), partition_size, MPI_SHORT, &(map2[local_start][0]), partition_size, MPI_SHORT, 0, MPI_COMM_WORLD );
