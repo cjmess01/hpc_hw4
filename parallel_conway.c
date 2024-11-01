@@ -187,11 +187,12 @@ int main(int argc, char **argv)
     map1[i] = &block1[i * nCols];
     map2[i] = &block2[i * nCols];
   }
+  //Seeding
   srand48(12345);
 
+  // Gives initial values
   if (my_rank == 0)
   {
-    // Initial values
     for (int i = 0; i < nRows; i++)
     {
       for (int j = 0; j < nCols; j++)
@@ -207,9 +208,9 @@ int main(int argc, char **argv)
         }
       }
     }
-    // printarray(map1, nRows, nCols);
+
   }
-  else if (my_rank != 0)
+  else if (my_rank != 0) // Sets empty arrays in none-0 processes
   {
     for (int i = 0; i < nRows; i++)
     {
@@ -230,16 +231,19 @@ int main(int argc, char **argv)
   int local_end = local_start + partition_size / nCols;
 
   // Special case for 16 threads
+  // In 16 thread case, we need to set the row number manually
+  // And also make the last thread take a couple extra rows
   if (comm_sz == 16)
   {
     partition_size = 312 * 5002;
-    special_partition_size = 320 * 5002;
+    special_partition_size = 320 * 5002; // The last thread will get some extra rows
     // Determines starting row based on thread number. Divide by nCols to put in row units
     local_start = my_rank * partition_size / nCols + 1;
-    // Determines ending row based on locat start
+    // Determines ending row based on local start
     local_end = local_start + partition_size / nCols;
   }
 
+  // Set local start to 1 in thread 0, and set end to the very end in last thread
   if (my_rank == 0)
   {
     local_start = 1;
@@ -256,14 +260,17 @@ int main(int argc, char **argv)
   // Makes sure every thread receives the starting map
   MPI_Barrier(MPI_COMM_WORLD);
 
+  // In the 16 thread case, the last thread needs to get a couple extra rows
   if (comm_sz == 16)
   {
     if (my_rank == 0)
     {
+      // Manually send the last thread some extra rows
       MPI_Send(&(map1[4681][0]), special_partition_size, MPI_SHORT, 15, 0, MPI_COMM_WORLD);
     }
     else if (my_rank == 15)
     {
+      // Receive extra rows
       MPI_Recv(&map2[local_start][0], special_partition_size, MPI_SHORT, 0, 0, MPI_COMM_WORLD, NULL);
     }
   }
@@ -296,9 +303,11 @@ int main(int argc, char **argv)
     //   printf("%d\n", i);
     // }
 
+    // Get the total changes
     int total_changes = 0;
     MPI_Allreduce(&changes, &total_changes, 1, MPI_INT, MPI_SUM, MPI_COMM_WORLD);
 
+    // Check change value
     if (total_changes == 0)
     {
       printf("Exiting early(gen %d) due to no change.\n", i);
@@ -311,13 +320,15 @@ int main(int argc, char **argv)
   MPI_Barrier(MPI_COMM_WORLD);
   double finish = MPI_Wtime();
 
-  // Recombine map
+  // Recombine the map
   if (my_rank == 0 && comm_sz > 1)
   {
     for (int i = 1; i < comm_sz; i++)
     {
 
       MPI_Status status;
+      // The 16 thread case needs a special receive from the last thread
+      // TO get the extra rows at the end
       if (comm_sz == 16)
       {
         if (i == comm_sz - 1)
@@ -328,7 +339,7 @@ int main(int argc, char **argv)
         {
           MPI_Recv(&(map1[i * 312 + 1][0]), partition_size, MPI_SHORT, i, 0, MPI_COMM_WORLD, &status);
         }
-        printf("Received from row: %d\n", (i * 312 + 1));
+        
       }
       else
       {
@@ -341,6 +352,8 @@ int main(int argc, char **argv)
   }
   else if (comm_sz > 1 && my_rank != 0)
   {
+    // As before, the 16 thread case is a little different,
+    // But only for the last thread
 
     printf("Thread %d: Sending partition starting with row %d\n", my_rank, local_start);
     if (comm_sz == 16)
@@ -361,6 +374,7 @@ int main(int argc, char **argv)
   }
   MPI_Barrier(MPI_COMM_WORLD);
 
+  // Print test details
   if (my_rank == 0)
   {
     printf("Test details:\n %d by %d board\n", nRows, nCols);
@@ -370,6 +384,8 @@ int main(int argc, char **argv)
     printf("Terminated at generation %d\n", final_gen);
   }
 
+
+  // Write the map to a file
   if (my_rank == 0)
   {
 
@@ -383,8 +399,6 @@ int main(int argc, char **argv)
     }
     for (int i = 1; i < nRows - 1; i++)
     {
-      
-
       for (int j = 1; j < nCols - 1; j++)
       {
 
