@@ -238,11 +238,11 @@ int main(int argc, char **argv){
   MPI_Scatter(&(map1[1][0]), partition_size, MPI_SHORT, &(map2[local_start][0]), partition_size, MPI_SHORT, 0, MPI_COMM_WORLD );
   // Makes sure every thread receives the starting map
   MPI_Barrier(MPI_COMM_WORLD);
-
+  
   if(comm_sz == 16){
     if(my_rank == 0){
       MPI_Send(&(map1[4681][0]), special_partition_size, MPI_SHORT, 15, 0, MPI_COMM_WORLD);
-    } else if(my_rank == 16){
+    } else if(my_rank == 15){
       MPI_Recv(&map2[local_start][0], special_partition_size, MPI_SHORT, 0, 0, MPI_COMM_WORLD, NULL);
     }
   }
@@ -299,17 +299,17 @@ int main(int argc, char **argv){
       MPI_Status status;
       if(comm_sz == 16){
         if(i == comm_sz -1){
-          MPI_Recv(&(map1[i*312 + 1][0]), special_partition_size, MPI_SHORT, i, 0, MPI_COMM_WORLD, &status);
+          MPI_Recv(&(map1[4681][0]), special_partition_size, MPI_SHORT, i, 0, MPI_COMM_WORLD, &status);
 
         } else {
           MPI_Recv(&(map1[i*312 + 1][0]), partition_size, MPI_SHORT, i, 0, MPI_COMM_WORLD, &status);
 
         }
-
+        printf("Received from row: %d\n", (i*312 + 1));
       } else {
         MPI_Recv(&(map1[i*partition_size / nCols + 1][0]), partition_size, MPI_SHORT, i, 0, MPI_COMM_WORLD, &status);
       }
-      printf("Received from %d\n", status.MPI_SOURCE);
+      printf("Received starting from row %d\n", status.MPI_SOURCE);
       
       //printf("Receiving - %d from %d\n", i*partition_size / nCols + 1, i);
     }
@@ -357,14 +357,12 @@ int main(int argc, char **argv){
     }
     for (int i = 1; i < nRows - 1; i++)
     {
+      printf("%d\n",i);
     
       for (int j = 1; j < nCols - 1; j++)
       {
       
-          
-          fprintf(file, "%d ", map1[i][j]);
-        
-        
+        fprintf(file, "%d ", map1[i][j]);
         
       }
       fprintf(file, "\n"); // New line after each row
@@ -372,6 +370,7 @@ int main(int argc, char **argv){
     printf("Done\n");
     fclose(file);
   }
+  MPI_Barrier(MPI_COMM_WORLD);
     
 
   
