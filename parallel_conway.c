@@ -156,12 +156,18 @@ int main(int argc, char **argv)
   // Adds 2 to rows and cols for dead border
   int nRows = atoi(argv[1]) + 2;
   int nCols = nRows;
+  // Number of generations
   int numGenerations = atoi(argv[2]);
+  // Output directory
   char *output_directory = argv[3];
+  // vars to get ranking information
   int my_rank, comm_sz;
+  // For maps
   short int *block1, *block2;
   short int **map1, **map2;
+  // Terminated gen variable
   int terminated_gen = 0;
+  //For special 16 thread case
   int special_partition_size;
 
   // Initialize MPI
@@ -377,7 +383,7 @@ int main(int argc, char **argv)
     }
     for (int i = 1; i < nRows - 1; i++)
     {
-      printf("%d\n", i);
+      
 
       for (int j = 1; j < nCols - 1; j++)
       {
