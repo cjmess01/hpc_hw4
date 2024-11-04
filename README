@@ -1,1 +1,9 @@
 Homework 4 readme
+
+Caleb Messerly HPC HW 4
+
+This repo contains the parallel_conway.c file, a parallel implementation of the game of life.
+
+It also contains the i_send_conway.c file, used for the masters segment of HW4. 
+
+It also contains the bash scripts used in the run_script command
