@@ -1,0 +1,858 @@
+setting asax scratch directory
+ 
+============================================================
+=====         Summary of your script job               =====
+============================================================
+  The script file is: job.sh
+  The time limit is 12:00:00 HH:MM:SS.
+  The target directory is: /home/ualclsd0178/hw4/hpc_hw4
+  The working directory is:  /scratch-local/ualclsd0178.hw4finalpart1.204564.asax-pbs1
+  The memory limit is: 20gb
+  The job will start running after: 202411011235.13
+  Job Name: hw4finalpart1
+  Queue: -q class -W group_list=classq
+  Constraints: 
+  Using  20  cores on master node  asax020.asc.edu
+  Node list:  asax020.asc.edu asax020.asc.edu asax020.asc.edu asax020.asc.edu asax020.asc.edu asax020.asc.edu asax020.asc.edu asax020.asc.edu asax020.asc.edu asax020.asc.edu asax020.asc.edu asax020.asc.edu asax020.asc.edu asax020.asc.edu asax020.asc.edu asax020.asc.edu asax020.asc.edu asax020.asc.edu asax020.asc.edu asax020.asc.edu
+  Cores:  20
+  Command typed:
+/scripts/run_script job.sh     
+  Queue submit command:
+qsub -q class -W group_list=classq -j oe -N hw4finalpart1 -a 202411011235.13 -r n -M cjmesserly@crimson.ua.edu -l walltime=12:00:00 -l select=ncpus=20:mpiprocs=20:mem=20000mb 
+Range: [1001 - 1251)
+Range: [1251 - 1501)
+Range: [1501 - 1751)
+Range: [1751 - 2001)
+Range: [2001 - 2251)
+Range: [2251 - 2501)
+Range: [2501 - 2751)
+Range: [2751 - 3001)
+Range: [3001 - 3251)
+Range: [3251 - 3501)
+Range: [3501 - 3751)
+Range: [3751 - 4001)
+Range: [4001 - 4251)
+Range: [4251 - 4501)
+Range: [4501 - 4751)
+Range: [4751 - 5001)
+Range: [1 - 251)
+Range: [251 - 501)
+Range: [501 - 751)
+Range: [751 - 1001)
+Thread 1: Sending partition starting with row 251
+Thread 2: Sending partition starting with row 501
+Thread 4: Sending partition starting with row 1001
+Thread 5: Sending partition starting with row 1251
+Thread 6: Sending partition starting with row 1501
+Thread 7: Sending partition starting with row 1751
+Thread 8: Sending partition starting with row 2001
+Thread 9: Sending partition starting with row 2251
+Thread 10: Sending partition starting with row 2501
+Thread 11: Sending partition starting with row 2751
+Thread 12: Sending partition starting with row 3001
+Thread 13: Sending partition starting with row 3251
+Thread 14: Sending partition starting with row 3501
+Thread 15: Sending partition starting with row 3751
+Thread 16: Sending partition starting with row 4001
+Thread 18: Sending partition starting with row 4501
+Thread 3: Sending partition starting with row 751
+Thread 17: Sending partition starting with row 4251
+Thread 19: Sending partition starting with row 4751
+Received starting from row 1
+Received starting from row 2
+Received starting from row 3
+Received starting from row 4
+Received starting from row 5
+Received starting from row 6
+Received starting from row 7
+Received starting from row 8
+Received starting from row 9
+Received starting from row 10
+Received starting from row 11
+Received starting from row 12
+Received starting from row 13
+Received starting from row 14
+Received starting from row 15
+Received starting from row 16
+Received starting from row 17
+Received starting from row 18
+Received starting from row 19
+Test details:
+ 5002 by 5002 board
+5000 generations
+Threads: 20
+Time taken = 120.969863 seconds
+Terminated at generation 4999
+Done
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Range: [1 - 251)
+Range: [1001 - 1251)
+Range: [1251 - 1501)
+Range: [1501 - 1751)
+Range: [1751 - 2001)
+Range: [2001 - 2251)
+Range: [2251 - 2501)
+Range: [2501 - 2751)
+Range: [2751 - 3001)
+Range: [3001 - 3251)
+Range: [3251 - 3501)
+Range: [3501 - 3751)
+Range: [3751 - 4001)
+Range: [4001 - 4251)
+Range: [4251 - 4501)
+Range: [4751 - 5001)
+Range: [251 - 501)
+Range: [751 - 1001)
+Range: [501 - 751)
+Range: [4501 - 4751)
+Thread 19: Sending partition starting with row 4751
+Thread 3: Sending partition starting with row 751
+Thread 1: Sending partition starting with row 251
+Thread 4: Sending partition starting with row 1001
+Thread 5: Sending partition starting with row 1251
+Thread 6: Sending partition starting with row 1501
+Thread 7: Sending partition starting with row 1751
+Thread 8: Sending partition starting with row 2001
+Thread 9: Sending partition starting with row 2251
+Thread 10: Sending partition starting with row 2501
+Thread 11: Sending partition starting with row 2751
+Thread 12: Sending partition starting with row 3001
+Thread 13: Sending partition starting with row 3251
+Thread 14: Sending partition starting with row 3501
+Thread 15: Sending partition starting with row 3751
+Thread 16: Sending partition starting with row 4001
+Thread 2: Sending partition starting with row 501
+Thread 17: Sending partition starting with row 4251
+Thread 18: Sending partition starting with row 4501
+Received starting from row 1
+Received starting from row 2
+Received starting from row 3
+Received starting from row 4
+Received starting from row 5
+Received starting from row 6
+Received starting from row 7
+Received starting from row 8
+Received starting from row 9
+Received starting from row 10
+Received starting from row 11
+Received starting from row 12
+Received starting from row 13
+Received starting from row 14
+Received starting from row 15
+Received starting from row 16
+Received starting from row 17
+Received starting from row 18
+Received starting from row 19
+Test details:
+ 5002 by 5002 board
+5000 generations
+Threads: 20
+Time taken = 117.276612 seconds
+Terminated at generation 4999
+Done
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Range: [1001 - 1251)
+Range: [1251 - 1501)
+Range: [1501 - 1751)
+Range: [1751 - 2001)
+Range: [2001 - 2251)
+Range: [2251 - 2501)
+Range: [2501 - 2751)
+Range: [2751 - 3001)
+Range: [3001 - 3251)
+Range: [3251 - 3501)
+Range: [3501 - 3751)
+Range: [3751 - 4001)
+Range: [4001 - 4251)
+Range: [4501 - 4751)
+Range: [1 - 251)
+Range: [251 - 501)
+Range: [501 - 751)
+Range: [751 - 1001)
+Range: [4251 - 4501)
+Range: [4751 - 5001)
+Thread 18: Sending partition starting with row 4501
+Thread 1: Sending partition starting with row 251
+Thread 2: Sending partition starting with row 501
+Thread 4: Sending partition starting with row 1001
+Thread 5: Sending partition starting with row 1251
+Thread 6: Sending partition starting with row 1501
+Thread 7: Sending partition starting with row 1751
+Thread 8: Sending partition starting with row 2001
+Thread 9: Sending partition starting with row 2251
+Thread 10: Sending partition starting with row 2501
+Thread 11: Sending partition starting with row 2751
+Thread 12: Sending partition starting with row 3001
+Thread 13: Sending partition starting with row 3251
+Thread 14: Sending partition starting with row 3501
+Thread 15: Sending partition starting with row 3751
+Thread 3: Sending partition starting with row 751
+Thread 16: Sending partition starting with row 4001
+Thread 17: Sending partition starting with row 4251
+Thread 19: Sending partition starting with row 4751
+Received starting from row 1
+Received starting from row 2
+Received starting from row 3
+Received starting from row 4
+Received starting from row 5
+Received starting from row 6
+Received starting from row 7
+Received starting from row 8
+Received starting from row 9
+Received starting from row 10
+Received starting from row 11
+Received starting from row 12
+Received starting from row 13
+Received starting from row 14
+Received starting from row 15
+Received starting from row 16
+Received starting from row 17
+Received starting from row 18
+Received starting from row 19
+Test details:
+ 5002 by 5002 board
+5000 generations
+Threads: 20
+Time taken = 122.084031 seconds
+Terminated at generation 4999
+Done
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Range: [1 - 313)
+Range: [313 - 625)
+Range: [625 - 937)
+Range: [937 - 1249)
+Range: [1249 - 1561)
+Range: [1561 - 1873)
+Range: [1873 - 2185)
+Range: [2185 - 2497)
+Range: [2497 - 2809)
+Range: [2809 - 3121)
+Range: [3121 - 3433)
+Range: [3433 - 3745)
+Range: [3745 - 4057)
+Range: [4057 - 4369)
+Range: [4369 - 4681)
+Range: [4681 - 5001)
+Thread 1: Sending partition starting with row 313
+Thread 2: Sending partition starting with row 625
+Thread 3: Sending partition starting with row 937
+Thread 4: Sending partition starting with row 1249
+Thread 5: Sending partition starting with row 1561
+Thread 6: Sending partition starting with row 1873
+Thread 7: Sending partition starting with row 2185
+Thread 8: Sending partition starting with row 2497
+Thread 9: Sending partition starting with row 2809
+Thread 10: Sending partition starting with row 3121
+Thread 11: Sending partition starting with row 3433
+Thread 12: Sending partition starting with row 3745
+Thread 13: Sending partition starting with row 4057
+Thread 14: Sending partition starting with row 4369
+Thread 15: Sending partition starting with row 4681
+Received starting from row 1
+Received starting from row 2
+Received starting from row 3
+Received starting from row 4
+Received starting from row 5
+Received starting from row 6
+Received starting from row 7
+Received starting from row 8
+Received starting from row 9
+Received starting from row 10
+Received starting from row 11
+Received starting from row 12
+Received starting from row 13
+Received starting from row 14
+Received starting from row 15
+Test details:
+ 5002 by 5002 board
+5000 generations
+Threads: 16
+Time taken = 139.541616 seconds
+Terminated at generation 4999
+Done
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Range: [1 - 313)
+Range: [313 - 625)
+Range: [625 - 937)
+Range: [937 - 1249)
+Range: [1249 - 1561)
+Range: [1561 - 1873)
+Range: [1873 - 2185)
+Range: [2185 - 2497)
+Range: [2497 - 2809)
+Range: [2809 - 3121)
+Range: [3433 - 3745)
+Range: [3745 - 4057)
+Range: [4057 - 4369)
+Range: [4681 - 5001)
+Range: [4369 - 4681)
+Range: [3121 - 3433)
+Thread 1: Sending partition starting with row 313
+Thread 2: Sending partition starting with row 625
+Thread 3: Sending partition starting with row 937
+Thread 4: Sending partition starting with row 1249
+Thread 5: Sending partition starting with row 1561
+Thread 6: Sending partition starting with row 1873
+Thread 7: Sending partition starting with row 2185
+Thread 8: Sending partition starting with row 2497
+Thread 14: Sending partition starting with row 4369
+Thread 9: Sending partition starting with row 2809
+Thread 11: Sending partition starting with row 3433
+Thread 12: Sending partition starting with row 3745
+Thread 15: Sending partition starting with row 4681
+Thread 13: Sending partition starting with row 4057
+Thread 10: Sending partition starting with row 3121
+Received starting from row 1
+Received starting from row 2
+Received starting from row 3
+Received starting from row 4
+Received starting from row 5
+Received starting from row 6
+Received starting from row 7
+Received starting from row 8
+Received starting from row 9
+Received starting from row 10
+Received starting from row 11
+Received starting from row 12
+Received starting from row 13
+Received starting from row 14
+Received starting from row 15
+Test details:
+ 5002 by 5002 board
+5000 generations
+Threads: 16
+Time taken = 142.625042 seconds
+Terminated at generation 4999
+Done
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Range: [1 - 313)
+Range: [313 - 625)
+Range: [937 - 1249)
+Range: [1561 - 1873)
+Range: [2185 - 2497)
+Range: [2809 - 3121)
+Range: [3433 - 3745)
+Range: [4057 - 4369)
+Range: [4681 - 5001)
+Range: [625 - 937)
+Range: [1249 - 1561)
+Range: [1873 - 2185)
+Range: [2497 - 2809)
+Range: [3121 - 3433)
+Range: [3745 - 4057)
+Range: [4369 - 4681)
+Thread 15: Sending partition starting with row 4681
+Thread 1: Sending partition starting with row 313
+Thread 2: Sending partition starting with row 625
+Thread 3: Sending partition starting with row 937
+Thread 4: Sending partition starting with row 1249
+Thread 5: Sending partition starting with row 1561
+Thread 6: Sending partition starting with row 1873
+Thread 7: Sending partition starting with row 2185
+Thread 8: Sending partition starting with row 2497
+Thread 9: Sending partition starting with row 2809
+Thread 10: Sending partition starting with row 3121
+Thread 11: Sending partition starting with row 3433
+Thread 12: Sending partition starting with row 3745
+Thread 13: Sending partition starting with row 4057
+Thread 14: Sending partition starting with row 4369
+Received starting from row 1
+Received starting from row 2
+Received starting from row 3
+Received starting from row 4
+Received starting from row 5
+Received starting from row 6
+Received starting from row 7
+Received starting from row 8
+Received starting from row 9
+Received starting from row 10
+Received starting from row 11
+Received starting from row 12
+Received starting from row 13
+Received starting from row 14
+Received starting from row 15
+Test details:
+ 5002 by 5002 board
+5000 generations
+Threads: 16
+Time taken = 136.645686 seconds
+Terminated at generation 4999
+Done
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Range: [1 - 5001)
+Test details:
+ 5002 by 5002 board
+5000 generations
+Threads: 1
+Time taken = 1749.037404 seconds
+Terminated at generation 4999
+Done
+Finished
+Range: [1 - 5001)
+Test details:
+ 5002 by 5002 board
+5000 generations
+Threads: 1
+Time taken = 1723.659750 seconds
+Terminated at generation 4999
+Done
+Finished
+Range: [1 - 5001)
+Test details:
+ 5002 by 5002 board
+5000 generations
+Threads: 1
+Time taken = 1620.267649 seconds
+Terminated at generation 4999
+Done
+Finished
+Range: [1 - 2501)
+Range: [2501 - 5001)
+Thread 1: Sending partition starting with row 2501
+Received starting from row 1
+Test details:
+ 5002 by 5002 board
+5000 generations
+Threads: 2
+Time taken = 884.281379 seconds
+Terminated at generation 4999
+Done
+Finished
+Finished
+Range: [1 - 2501)
+Range: [2501 - 5001)
+Thread 1: Sending partition starting with row 2501
+Received starting from row 1
+Test details:
+ 5002 by 5002 board
+5000 generations
+Threads: 2
+Time taken = 889.917672 seconds
+Terminated at generation 4999
+Done
+Finished
+Finished
+Range: [1 - 2501)
+Range: [2501 - 5001)
+Thread 1: Sending partition starting with row 2501
+Received starting from row 1
+Test details:
+ 5002 by 5002 board
+5000 generations
+Threads: 2
+Time taken = 837.749805 seconds
+Terminated at generation 4999
+Done
+Finished
+Finished
+Range: [1 - 1251)
+Range: [1251 - 2501)
+Range: [2501 - 3751)
+Range: [3751 - 5001)
+Thread 1: Sending partition starting with row 1251
+Thread 2: Sending partition starting with row 2501
+Thread 3: Sending partition starting with row 3751
+Received starting from row 1
+Received starting from row 2
+Received starting from row 3
+Test details:
+ 5002 by 5002 board
+5000 generations
+Threads: 4
+Time taken = 433.589409 seconds
+Terminated at generation 4999
+Done
+Finished
+Finished
+Finished
+Finished
+Range: [1 - 1251)
+Range: [1251 - 2501)
+Range: [2501 - 3751)
+Range: [3751 - 5001)
+Thread 1: Sending partition starting with row 1251
+Thread 2: Sending partition starting with row 2501
+Thread 3: Sending partition starting with row 3751
+Received starting from row 1
+Received starting from row 2
+Received starting from row 3
+Test details:
+ 5002 by 5002 board
+5000 generations
+Threads: 4
+Time taken = 468.805499 seconds
+Terminated at generation 4999
+Done
+Finished
+Finished
+Finished
+Finished
+Range: [1 - 1251)
+Range: [1251 - 2501)
+Range: [2501 - 3751)
+Range: [3751 - 5001)
+Thread 1: Sending partition starting with row 1251
+Thread 2: Sending partition starting with row 2501
+Thread 3: Sending partition starting with row 3751
+Received starting from row 1
+Received starting from row 2
+Received starting from row 3
+Test details:
+ 5002 by 5002 board
+5000 generations
+Threads: 4
+Time taken = 477.315089 seconds
+Terminated at generation 4999
+Done
+Finished
+Finished
+Finished
+Finished
+Range: [1 - 626)
+Range: [626 - 1251)
+Range: [1251 - 1876)
+Range: [1876 - 2501)
+Range: [2501 - 3126)
+Range: [3126 - 3751)
+Range: [3751 - 4376)
+Range: [4376 - 5001)
+Thread 1: Sending partition starting with row 626
+Thread 2: Sending partition starting with row 1251
+Thread 3: Sending partition starting with row 1876
+Thread 4: Sending partition starting with row 2501
+Thread 5: Sending partition starting with row 3126
+Thread 6: Sending partition starting with row 3751
+Thread 7: Sending partition starting with row 4376
+Received starting from row 1
+Received starting from row 2
+Received starting from row 3
+Received starting from row 4
+Received starting from row 5
+Received starting from row 6
+Received starting from row 7
+Test details:
+ 5002 by 5002 board
+5000 generations
+Threads: 8
+Time taken = 242.716330 seconds
+Terminated at generation 4999
+Done
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Range: [1 - 626)
+Range: [626 - 1251)
+Range: [1251 - 1876)
+Range: [1876 - 2501)
+Range: [2501 - 3126)
+Range: [3126 - 3751)
+Range: [3751 - 4376)
+Range: [4376 - 5001)
+Thread 1: Sending partition starting with row 626
+Thread 2: Sending partition starting with row 1251
+Thread 3: Sending partition starting with row 1876
+Thread 4: Sending partition starting with row 2501
+Thread 5: Sending partition starting with row 3126
+Thread 6: Sending partition starting with row 3751
+Thread 7: Sending partition starting with row 4376
+Received starting from row 1
+Received starting from row 2
+Received starting from row 3
+Received starting from row 4
+Received starting from row 5
+Received starting from row 6
+Received starting from row 7
+Test details:
+ 5002 by 5002 board
+5000 generations
+Threads: 8
+Time taken = 240.225375 seconds
+Terminated at generation 4999
+Done
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Range: [1 - 626)
+Range: [626 - 1251)
+Range: [1251 - 1876)
+Range: [1876 - 2501)
+Range: [2501 - 3126)
+Range: [3126 - 3751)
+Range: [3751 - 4376)
+Range: [4376 - 5001)
+Thread 1: Sending partition starting with row 626
+Thread 2: Sending partition starting with row 1251
+Thread 3: Sending partition starting with row 1876
+Thread 4: Sending partition starting with row 2501
+Thread 5: Sending partition starting with row 3126
+Thread 6: Sending partition starting with row 3751
+Thread 7: Sending partition starting with row 4376
+Received starting from row 1
+Received starting from row 2
+Received starting from row 3
+Received starting from row 4
+Received starting from row 5
+Received starting from row 6
+Received starting from row 7
+Test details:
+ 5002 by 5002 board
+5000 generations
+Threads: 8
+Time taken = 238.873373 seconds
+Terminated at generation 4999
+Done
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Range: [1 - 501)
+Range: [1001 - 1501)
+Range: [1501 - 2001)
+Range: [2001 - 2501)
+Range: [2501 - 3001)
+Range: [3001 - 3501)
+Range: [3501 - 4001)
+Range: [4001 - 4501)
+Range: [4501 - 5001)
+Range: [501 - 1001)
+Thread 9: Sending partition starting with row 4501
+Thread 2: Sending partition starting with row 1001
+Thread 3: Sending partition starting with row 1501
+Thread 4: Sending partition starting with row 2001
+Thread 5: Sending partition starting with row 2501
+Thread 6: Sending partition starting with row 3001
+Thread 7: Sending partition starting with row 3501
+Thread 8: Sending partition starting with row 4001
+Thread 1: Sending partition starting with row 501
+Received starting from row 1
+Received starting from row 2
+Received starting from row 3
+Received starting from row 4
+Received starting from row 5
+Received starting from row 6
+Received starting from row 7
+Received starting from row 8
+Received starting from row 9
+Test details:
+ 5002 by 5002 board
+5000 generations
+Threads: 10
+Time taken = 189.493991 seconds
+Terminated at generation 4999
+Done
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Range: [1001 - 1501)
+Range: [1501 - 2001)
+Range: [2001 - 2501)
+Range: [2501 - 3001)
+Range: [3001 - 3501)
+Range: [3501 - 4001)
+Range: [4001 - 4501)
+Range: [4501 - 5001)
+Range: [1 - 501)
+Range: [501 - 1001)
+Thread 9: Sending partition starting with row 4501
+Thread 2: Sending partition starting with row 1001
+Thread 3: Sending partition starting with row 1501
+Thread 4: Sending partition starting with row 2001
+Thread 5: Sending partition starting with row 2501
+Thread 6: Sending partition starting with row 3001
+Thread 7: Sending partition starting with row 3501
+Thread 8: Sending partition starting with row 4001
+Thread 1: Sending partition starting with row 501
+Received starting from row 1
+Received starting from row 2
+Received starting from row 3
+Received starting from row 4
+Received starting from row 5
+Received starting from row 6
+Received starting from row 7
+Received starting from row 8
+Received starting from row 9
+Test details:
+ 5002 by 5002 board
+5000 generations
+Threads: 10
+Time taken = 185.645177 seconds
+Terminated at generation 4999
+Done
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Range: [1 - 501)
+Range: [501 - 1001)
+Range: [1001 - 1501)
+Range: [1501 - 2001)
+Range: [2001 - 2501)
+Range: [2501 - 3001)
+Range: [3001 - 3501)
+Range: [3501 - 4001)
+Range: [4001 - 4501)
+Range: [4501 - 5001)
+Thread 1: Sending partition starting with row 501
+Thread 2: Sending partition starting with row 1001
+Thread 3: Sending partition starting with row 1501
+Thread 4: Sending partition starting with row 2001
+Thread 5: Sending partition starting with row 2501
+Thread 6: Sending partition starting with row 3001
+Thread 7: Sending partition starting with row 3501
+Thread 8: Sending partition starting with row 4001
+Thread 9: Sending partition starting with row 4501
+Received starting from row 1
+Received starting from row 2
+Received starting from row 3
+Received starting from row 4
+Received starting from row 5
+Received starting from row 6
+Received starting from row 7
+Received starting from row 8
+Received starting from row 9
+Test details:
+ 5002 by 5002 board
+5000 generations
+Threads: 10
+Time taken = 214.937553 seconds
+Terminated at generation 4999
+Done
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
+Finished
